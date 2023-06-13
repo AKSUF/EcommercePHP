@@ -47,8 +47,9 @@ include('./function/common_function.php');
 
           </ul>
           <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-light" type="submit">Search</button>
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_data">
+            <!-- <button class="btn btn-outline-light" type="submit">Search</button> -->
+            <input type="submit" value="Search" class="btn btn-outline-light" name="searc_data_product">
           </form>
         </div>
       </div>
@@ -79,10 +80,7 @@ include('./function/common_function.php');
       <p class="text-center">
         Congratulation in this online community and store
       </p>
-
-
     </div>
-
     <!-- 4th child -->
 
     <div class="row">
@@ -92,6 +90,8 @@ include('./function/common_function.php');
   <!-- category -->
 <?php
 get_products();
+get_uni_category();
+get_uni_brands();
 ?>
       </div>
       </div>
@@ -108,9 +108,8 @@ category section -->
 <!-- sitbar -->
           <?php
          getbranch();
+        
           ?>
-
-
         </ul>
         <ul class="navbar-nav me-auto text-center">
           <li class="nav-item bg-info">
@@ -128,18 +127,12 @@ category section -->
       </div>
     </div>
 
-
-
-
     <!-- last child -->
 
     <div class="bg-info p-3 text-center">
 
       <p>All rights reserbed 0-Designrd by Abu</p>
     </div>
-
-
-
   </div>
   <!-- CDN for jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
