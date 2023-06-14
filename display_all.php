@@ -27,10 +27,10 @@ include('./function/common_function.php');
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link"  href="./index.php">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Products</a>
+              <a class="nav-link" href="display_all.php">Products</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Registration</a>
@@ -46,11 +46,10 @@ include('./function/common_function.php');
             </li>
 
           </ul>
-          <form class="d-flex" role="search" action="search_product.php" method="get">
+          <form class="d-flex" role="search" action="" method="get">
     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_data" value="<?php echo isset($_GET['search_data']) ? $_GET['search_data'] : ''; ?>">
     <input type="submit" value="Search" class="btn btn-outline-light" name="search_data_product">
 </form>
-
 
         </div>
       </div>
@@ -91,11 +90,9 @@ include('./function/common_function.php');
   <!-- category -->
 <?php
 
-
-search_products();
+get_all_products();
 get_uni_category();
 get_uni_brands();
-
 ?>
       </div>
       </div>
@@ -133,9 +130,10 @@ category section -->
 
     <!-- last child -->
 
-    <?php
-include("./includes/footer.php")
-?>
+    <div class="bg-info p-3 text-center">
+
+      <p>All rights reserbed 0-Designrd by Abu</p>
+    </div>
   </div>
   <!-- CDN for jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
