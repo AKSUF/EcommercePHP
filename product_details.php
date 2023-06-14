@@ -161,7 +161,9 @@ category section -->
     <!-- include footer -->
 
 <?php
-include("./includes/footer.php")
+$ip = getIPAddress();  
+// echo 'User Real IP Address - '.$ip;  
+// include("./includes/footer.php")
 
 ?>
 

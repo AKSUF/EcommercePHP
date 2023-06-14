@@ -26,7 +26,7 @@ if(!isset($_GET['category'])){
     <div class='card-body'>
       <h5 class='card-title'>$product_title</h5>
       <p class='card-text'>$product_description</p>
-      <a href=''class='btn btn-primary'>Add to Cart</a>
+      <a href='index.php?add_to_cart=$product_id'class='btn btn-primary'>Add to Cart</a>
       <a href='product_details.php?product_id=$product_id' class='btn btn-primary'>View more</a>
     </div>
   </div>
@@ -63,7 +63,7 @@ if(!isset($_GET['category'])){
     <div class='card-body'>
       <h5 class='card-title'>$product_title</h5>
       <p class='card-text'>$product_description</p>
-      <a href=''class='btn btn-primary'>Add to Cart</a>
+      <a href='index.php?add_to_cart=$product_id'class='btn btn-primary'>Add to Cart</a>
       <a href='product_details.php?product_id=$product_id' class='btn btn-primary'>View more</a>
     </div>
   </div>
@@ -105,7 +105,7 @@ if($num_of_rows==0){
     <div class='card-body'>
       <h5 class='card-title'>$product_title</h5>
       <p class='card-text'>$product_description</p>
-      <a href=''class='btn btn-primary'>Add to Cart</a>
+      <a href='index.php?add_to_cart=$product_id'class='btn btn-primary'>Add to Cart</a>
       <a href='product_details.php?product_id=$product_id' class='btn btn-primary'>View more</a>
     </div>
   </div>
@@ -144,7 +144,7 @@ function get_uni_brands() {
     <div class='card-body'>
       <h5 class='card-title'>$product_title</h5>
       <p class='card-text'>$product_description</p>
-      <a href=''class='btn btn-primary'>Add to Cart</a>
+      <a href='index.php?add_to_cart=$product_id'class='btn btn-primary'>Add to Cart</a>
       <a href='product_details.php?product_id=$product_id' class='btn btn-primary'>View more</a>  <a href='#' class='btn btn-primary'>View more</a>
     </div>
   </div>
@@ -230,7 +230,7 @@ function search_products()
     <div class='card-body'>
       <h5 class='card-title'>$product_title</h5>
       <p class='card-text'>$product_description</p>
-      <a href=''class='btn btn-primary'>Add to Cart</a>
+      <a href='index.php?add_to_cart=$product_id'class='btn btn-primary'>Add to Cart</a>
       <a href='#' class='btn btn-primary'>View more</a>
     </div>
   </div>
@@ -279,6 +279,50 @@ function view_details() {
       }
   }
 }
+//get ip adress
+function getIPAddress() {  
+  //whether ip is from the share internet  
+   if(!empty($_SERVER['HTTP_CLIENT_IP'])) {  
+              $ip = $_SERVER['HTTP_CLIENT_IP'];  
+      }  
+  //whether ip is from the proxy  
+  elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {  
+              $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];  
+   }  
+//whether ip is from the remote address  
+  else{  
+           $ip = $_SERVER['REMOTE_ADDR'];  
+   }  
+   return $ip;  
+}  
+// $ip = getIPAddress();  
+// echo 'User Real IP Address - '.$ip;  
+// cart function
+
+function cart(){
+if(isset($_GET['add_to_cart'])){
+  global $con;
+  $get_ip_add = getIPAddress();  
+  $get_product_id=$_GET['add_to_cart'];
+  $select_query="Select * from `cart` where ip_adress='$get_ip_add' and product_id=$get_product_id";
+  $result_query=mysqli_query($con,$select_query);
+$num_of_rows=mysqli_num_rows($result_query);
+if($num_of_rows>0){
+  echo"<script>alert('This item is already present in the cart')</script>";
+  echo"<script>window.open('index.php',_self)</script>";
+
+}else{
+  $insert_query="insert into `cart` (product_id,ip_adress,quality) values($get_product_id,'$get_ip_add',0) ";
+  $result_query=mysqli_query($con,$insert_query);
+  echo "<script>window.open('index.php','-self')</script>";
+}
+
+}
+
+}
+
+
+
 
 
 ?>
