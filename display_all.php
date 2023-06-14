@@ -72,6 +72,9 @@ include('./function/common_function.php');
 
       </ul>
     </nav>
+    <?php
+cart();
+?>
     <!-- third child -->
     <div class="bg-light">
       <h3 class="text-center">

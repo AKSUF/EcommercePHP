@@ -279,6 +279,49 @@ function view_details() {
       }
   }
 }
+
+//view details function
+function view_product() {
+  global $con;
+  if (isset($_GET['product_id'])) {
+      if (!isset($_GET['category'])) {
+          if (!isset($_GET['brand'])) {
+              $product_id = $_GET['product_id'];
+              $select_query = "SELECT * FROM `products` WHERE product_id=$product_id";
+              $result_query = mysqli_query($con, $select_query);
+
+              while ($row = mysqli_fetch_assoc($result_query)) {
+                  $product_id = $row['product_id'];
+                  $product_title = $row['product_title'];
+                  $product_description = $row['product_description'];
+                  $product_image1 = $row['product_image1'];
+                  $product_image2 = $row['product_image2'];
+                  $product_image3 = $row['product_image3'];
+                  $product_id = $row['product_id'];
+                  $category_id = $row['category_id'];
+                  $brand_id = $row['brand_id'];
+
+                  echo "
+                  <div class='col-md-4 my-3'>
+                  <div class='card' style='width: 18rem;'>
+                    <img src='./admin_area/product_image/$product_image1' class='card-img-top' alt='...''>
+                    <div class='card-body'>
+                      <h5 class='card-title'>$product_title</h5>
+                      <p class='card-text'>$product_description</p>
+                      <a href='index.php?add_to_cart=$product_id'class='btn btn-primary'>Add to Cart</a>
+                      <a href='index.php' class='btn btn-primary'>Go to home</a>
+                    </div>
+                  </div>
+                </div>
+                  ";
+              }
+          }
+      }
+  }
+}
+
+
+
 //get ip adress
 function getIPAddress() {  
   //whether ip is from the share internet  
@@ -310,7 +353,6 @@ $num_of_rows=mysqli_num_rows($result_query);
 if($num_of_rows>0){
   echo"<script>alert('This item is already present in the cart')</script>";
   echo"<script>window.open('index.php',_self)</script>";
-
 }else{
   $insert_query="insert into `cart` (product_id,ip_adress,quality) values($get_product_id,'$get_ip_add',0) ";
   $result_query=mysqli_query($con,$insert_query);
@@ -321,6 +363,26 @@ if($num_of_rows>0){
 
 }
 
+//function to get cart item
+
+function cart_item(){
+  if(isset($_GET['add_to_cart'])){
+  global $con;
+  $get_ip_add = getIPAddress();  
+  $get_product_id=$_GET['add_to_cart'];
+  $select_query="Select * from `cart` where ip_adress='$get_ip_add' and product_id=$get_product_id";
+  $result_query=mysqli_query($con,$select_query);
+$count_car_items=mysqli_num_rows($result_query);
+}else{
+  global $con;
+  $get_ip_add = getIPAddress();  
+  $get_product_id=$_GET['add_to_cart'];
+  $select_query="Select * from `cart` where ip_adress='$get_ip_add' and product_id=$get_product_id";
+  $result_query=mysqli_query($con,$select_query);
+$count_car_items=mysqli_num_rows($result_query);
+}
+echo $count_car_items;
+}
 
 
 

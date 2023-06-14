@@ -91,15 +91,10 @@ include('./function/common_function.php');
 <div class="col-md-4">
 <!-- card -->
 <div class='col-md-4 my-3'>
-  <div class='card' style='width: 18rem;'>
-    <img src='./admin_area/product_image/$product_image1' class='card-img-top' alt='...''>
-    <div class='card-body'>
-      <h5 class='card-title'>$product_title</h5>
-      <p class='card-text'>$product_description</p>
-      <a href=''class='btn btn-primary'>Add to Cart</a>
-      <a href='product_details.php?product_id=$product_id' class='btn btn-primary'>View more</a>
-    </div>
-  </div>
+<?php
+view_product();
+
+?>
 </div>
 
 </div>
