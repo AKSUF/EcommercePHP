@@ -27,7 +27,7 @@ if(!isset($_GET['category'])){
       <h5 class='card-title'>$product_title</h5>
       <p class='card-text'>$product_description</p>
       <a href=''class='btn btn-primary'>Add to Cart</a>
-      <a href='#' class='btn btn-primary'>View more</a>
+      <a href='product_details.php?product_id=$product_id' class='btn btn-primary'>View more</a>
     </div>
   </div>
 </div>
@@ -64,7 +64,7 @@ if(!isset($_GET['category'])){
       <h5 class='card-title'>$product_title</h5>
       <p class='card-text'>$product_description</p>
       <a href=''class='btn btn-primary'>Add to Cart</a>
-      <a href='#' class='btn btn-primary'>View more</a>
+      <a href='product_details.php?product_id=$product_id' class='btn btn-primary'>View more</a>
     </div>
   </div>
 </div>
@@ -106,7 +106,7 @@ if($num_of_rows==0){
       <h5 class='card-title'>$product_title</h5>
       <p class='card-text'>$product_description</p>
       <a href=''class='btn btn-primary'>Add to Cart</a>
-      <a href='#' class='btn btn-primary'>View more</a>
+      <a href='product_details.php?product_id=$product_id' class='btn btn-primary'>View more</a>
     </div>
   </div>
 </div>
@@ -145,7 +145,7 @@ function get_uni_brands() {
       <h5 class='card-title'>$product_title</h5>
       <p class='card-text'>$product_description</p>
       <a href=''class='btn btn-primary'>Add to Cart</a>
-      <a href='#' class='btn btn-primary'>View more</a>
+      <a href='product_details.php?product_id=$product_id' class='btn btn-primary'>View more</a>  <a href='#' class='btn btn-primary'>View more</a>
     </div>
   </div>
 </div>
@@ -240,5 +240,45 @@ function search_products()
     }
 
   }
+
+//view details function
+function view_details() {
+  global $con;
+  if (isset($_GET['product_id'])) {
+      if (!isset($_GET['category'])) {
+          if (!isset($_GET['brand'])) {
+              $product_id = $_GET['product_id'];
+              $select_query = "SELECT * FROM `products` WHERE product_id=$product_id";
+              $result_query = mysqli_query($con, $select_query);
+
+              while ($row = mysqli_fetch_assoc($result_query)) {
+                  $product_id = $row['product_id'];
+                  $product_title = $row['product_title'];
+                  $product_description = $row['product_description'];
+                  $product_image1 = $row['product_image1'];
+                  $product_image2 = $row['product_image2'];
+                  $product_image3 = $row['product_image3'];
+                  $product_id = $row['product_id'];
+                  $category_id = $row['category_id'];
+                  $brand_id = $row['brand_id'];
+
+                  echo "
+                  <div class='col-md-12'>
+                      <h4 class='text-center text-info mb-5'>
+                          Related Products
+                      </h4>
+                      <div class='col-md-6'>
+                          <img src='../admin_area/$product_image2' class='card-img-top' alt='...'>
+                      </div>
+                      <div class='col-md-6'>
+                          <img src='./admin_area/product_image/$product_image3' class='card-img-top' alt='...'>
+                      </div>
+                  </div>";
+              }
+          }
+      }
+  }
+}
+
 
 ?>
