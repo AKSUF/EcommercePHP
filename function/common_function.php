@@ -17,6 +17,7 @@ if(!isset($_GET['category'])){
         $product_description = $row['product_description'];
         $product_image1 = $row['product_image1'];
         $product_id = $row['product_id'];
+        $product_price = $row['product_price'];
         $category_id = $row['category_id'];
         $brand_id = $row['brand_id'];
         echo "
@@ -26,6 +27,7 @@ if(!isset($_GET['category'])){
     <div class='card-body'>
       <h5 class='card-title'>$product_title</h5>
       <p class='card-text'>$product_description</p>
+      <p class='card-text'>$product_price</p>
       <a href='index.php?add_to_cart=$product_id'class='btn btn-primary'>Add to Cart</a>
       <a href='product_details.php?product_id=$product_id' class='btn btn-primary'>View more</a>
     </div>
@@ -54,6 +56,8 @@ if(!isset($_GET['category'])){
         $product_description = $row['product_description'];
         $product_image1 = $row['product_image1'];
         $product_id = $row['product_id'];
+        
+        $product_price = $row['product_price'];
         $category_id = $row['category_id'];
         $brand_id = $row['brand_id'];
         echo "
@@ -63,6 +67,7 @@ if(!isset($_GET['category'])){
     <div class='card-body'>
       <h5 class='card-title'>$product_title</h5>
       <p class='card-text'>$product_description</p>
+      <p class='card-text'>$product_price</p>
       <a href='index.php?add_to_cart=$product_id'class='btn btn-primary'>Add to Cart</a>
       <a href='product_details.php?product_id=$product_id' class='btn btn-primary'>View more</a>
     </div>
@@ -96,6 +101,7 @@ if($num_of_rows==0){
         $product_description = $row['product_description'];
         $product_image1 = $row['product_image1'];
         $product_id = $row['product_id'];
+        $product_price = $row['product_price'];
         $category_id = $row['category_id'];
         $brand_id = $row['brand_id'];
         echo "
@@ -105,6 +111,7 @@ if($num_of_rows==0){
     <div class='card-body'>
       <h5 class='card-title'>$product_title</h5>
       <p class='card-text'>$product_description</p>
+      <p class='card-text'>$product_price</p>
       <a href='index.php?add_to_cart=$product_id'class='btn btn-primary'>Add to Cart</a>
       <a href='product_details.php?product_id=$product_id' class='btn btn-primary'>View more</a>
     </div>
@@ -133,6 +140,7 @@ function get_uni_brands() {
         $product_id = $row['product_id'];
         $product_title = $row['product_title'];
         $product_description = $row['product_description'];
+        $product_price = $row['product_price'];
         $product_image1 = $row['product_image1'];
         $product_id = $row['product_id'];
         $category_id = $row['category_id'];
@@ -144,6 +152,7 @@ function get_uni_brands() {
     <div class='card-body'>
       <h5 class='card-title'>$product_title</h5>
       <p class='card-text'>$product_description</p>
+      <p class='card-text'>$product_price</p>
       <a href='index.php?add_to_cart=$product_id'class='btn btn-primary'>Add to Cart</a>
       <a href='product_details.php?product_id=$product_id' class='btn btn-primary'>View more</a>  <a href='#' class='btn btn-primary'>View more</a>
     </div>
@@ -221,6 +230,7 @@ function search_products()
         $product_description = $row['product_description'];
         $product_image1 = $row['product_image1'];
         $product_id = $row['product_id'];
+        $product_price = $row['product_price'];
         $category_id = $row['category_id'];
         $brand_id = $row['brand_id'];
         echo "
@@ -230,6 +240,7 @@ function search_products()
     <div class='card-body'>
       <h5 class='card-title'>$product_title</h5>
       <p class='card-text'>$product_description</p>
+      <p class='card-text'>$product_price</p>
       <a href='index.php?add_to_cart=$product_id'class='btn btn-primary'>Add to Cart</a>
       <a href='#' class='btn btn-primary'>View more</a>
     </div>
@@ -255,6 +266,7 @@ function view_details() {
                   $product_id = $row['product_id'];
                   $product_title = $row['product_title'];
                   $product_description = $row['product_description'];
+                  $product_price = $row['product_price'];
                   $product_image1 = $row['product_image1'];
                   $product_image2 = $row['product_image2'];
                   $product_image3 = $row['product_image3'];
@@ -295,6 +307,7 @@ function view_product() {
                   $product_title = $row['product_title'];
                   $product_description = $row['product_description'];
                   $product_image1 = $row['product_image1'];
+                  $product_price = $row['product_price'];
                   $product_image2 = $row['product_image2'];
                   $product_image3 = $row['product_image3'];
                   $product_id = $row['product_id'];
@@ -308,6 +321,7 @@ function view_product() {
                     <div class='card-body'>
                       <h5 class='card-title'>$product_title</h5>
                       <p class='card-text'>$product_description</p>
+                      <p class='card-text'>$product_price</p>
                       <a href='index.php?add_to_cart=$product_id'class='btn btn-primary'>Add to Cart</a>
                       <a href='index.php' class='btn btn-primary'>Go to home</a>
                     </div>
