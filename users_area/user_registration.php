@@ -1,3 +1,32 @@
+<?php
+include('../includes/connect.php');
+include('../function/abcommon.php');
+
+if(isset($_POST['user_register'])){
+    $user_username = $_POST['username'];
+    $user_email = $_POST['user_email'];
+    $user_password = $_POST['user_password'];
+    $user_address = $_POST['user_address'];
+    $user_mobile = $_POST['user_mobile'];
+    $user_image = $_FILES['user_image']['name'];
+    $user_image_tmp = $_FILES['user_image']['tmp_name'];
+    $user_ip = getIPAddress();
+
+    move_uploaded_file($user_image_tmp, "./users_image/$user_image");
+
+    $insert_query = "INSERT INTO user_table (username, user_email, user_password, user_address, user_mobile, user_image, user_ip)
+                     VALUES ('$user_username', '$user_email', '$user_password', '$user_address', '$user_mobile', '$user_image', '$user_ip')";
+
+    $sql_execute = mysqli_query($con, $insert_query);
+
+    if($sql_execute){
+        echo "<script>alert('Data inserted successfully')</script>";
+    } else {
+        die(mysqli_error($con));
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,71 +44,69 @@
     </h2>
     <div class="row d-flex align-item-center justify-content-center">
         <div class="col-lg-12 col-xl-6">
-<form action="" method="post" enctype="multipart/form-data">
+            <form action="" method="post" enctype="multipart/form-data">
 
-<div class="front-outline">
-    <label for="user_username">
-        Username
-    </label>
-    <input type="text" id="user_username" name="user_username" class="form-control" placeholder="Enter your username" autocomplete="off" required/>
-</div>
-<div class="front-outline">
-    <label for="user_email">
-    Email 
-    </label>
-    <input type="text" id="user_email" name="user_email" class="form-control" placeholder="Enter your email" autocomplete="off" required/>
-</div>
-<!-- Image1 -->
-<div class="front-outline">
-    <label for="user_image">
- User image
-    </label>
-    <input type="file" id="user_image" name="user_image" class="form-control" placeholder="Enter your email" autocomplete="off" required/>
-</div>
+                <div class="front-outline">
+                    <label for="username">
+                        Username
+                    </label>
+                    <input type="text" id="username" name="username" class="form-control" placeholder="Enter your username" autocomplete="off" required/>
+                </div>
+                <div class="front-outline">
+                    <label for="user_email">
+                        Email
+                    </label>
+                    <input type="text" id="user_email" name="user_email" class="form-control" placeholder="Enter your email" autocomplete="off" required/>
+                </div>
+                <!-- Image1 -->
+                <div class="front-outline">
+                    <label for="user_image">
+                        User image
+                    </label>
+                    <input type="file" id="user_image" name="user_image" class="form-control" placeholder="Enter your email" autocomplete="off" required/>
+                </div>
 
-<!-- password -->
+                <!-- password -->
 
-<div class="front-outline">
-    <label for="user_password">
-    Password
-    </label>
-    <input type="password" id="user_password" name="user_password" class="form-control" placeholder="Enter your password" autocomplete="off" required/>
-</div>
-<!-- confirm password -->
-<div class="front-outline">
-    <label for="conf_user_password">
-    Password
-    </label>
-    <input type="password" id="conf_user_password" name="conf_user_password" class="form-control" placeholder="Confirm your password" autocomplete="off" required/>
-</div>
+                <div class="front-outline">
+                    <label for="user_password">
+                        Password
+                    </label>
+                    <input type="password" id="user_password" name="user_password" class="form-control" placeholder="Enter your password" autocomplete="off" required/>
+                </div>
+                <!-- confirm password -->
+                <div class="front-outline">
+                    <label for="conf_user_password">
+                        Confirm Password
+                    </label>
+                    <input type="password" id="conf_user_password" name="conf_user_password" class="form-control" placeholder="Confirm your password" autocomplete="off" required/>
+                </div>
 
-<!-- Address field -->
-<div class="front-outline">
-    <label for="user_address">
-    Password
-    </label>
-    <input type="user_address" id="user_address" name="user_address" class="form-control" placeholder="Enter your Address" autocomplete="off" required/>
-</div>
-<!-- Contact field -->
-<div class="front-outline">
-    <label for="user_contact">
-    Password
-    </label>
-    <input type="user_contact" id="user_contact" name="user_contact" class="form-control" placeholder="Enter your Contact" autocomplete="off" required/>
-</div>
-<div class="text-center mt-3 ">
-    <input type="submit" value="register" class="bg-info py-2 px-3 border-0">
-<p>Already have an account? <a href="./user_login.php">Login</a></p>
-</div>
-</form>
+                <!-- Address field -->
+                <div class="front-outline">
+                    <label for="user_address">
+                        User Address
+                    </label>
+                    <input type="text" id="user_address" name="user_address" class="form-control" placeholder="Enter your Address" autocomplete="off" required/>
+                </div>
+                <!-- Contact field -->
+                <div class="front-outline">
+                    <label for="user_contact">
+                        Contact
+                    </label>
+                    <input type="text" id="user_mobile" name="user_mobile" class="form-control" placeholder="Enter your Contact" autocomplete="off" required/>
+                </div>
+
+                <div class="text-center mt-3 ">
+                    <input type="submit" value="register" class="bg-info py-2 px-3 border-0" name="user_register">
+                    <p>Already have an account? <a href="./user_login.php">Login</a></p>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 
-
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-    <script src="./js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<script src="./js/script.js"></script>
 </body>
 </html>

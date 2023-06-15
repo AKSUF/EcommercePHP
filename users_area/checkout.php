@@ -1,6 +1,6 @@
 <?php
-include('./includes/connect.php');
-include('./function/common_function.php');
+include('../includes/connect.php');
+
 ?>
 
 <!DOCTYPE html>
@@ -38,9 +38,9 @@ include('./function/common_function.php');
             <li class="nav-item">
               <a class="nav-link" href="#">Contact</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./cart.php"><i class="fa-sharp fa-solid fa-cart-shopping"><?php cart_item()?></i></a>
-            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="../cart.php"><i class="fa-sharp fa-solid fa-cart-shopping"><?php cart_item()?></i></a>
+            </li> -->
             <li class="nav-item">
               <a class="nav-link" href="#"><?php total_cart_price();?></a>
             </li>
@@ -91,7 +91,7 @@ include('./function/common_function.php');
 <div class="row">
 <?php
 if(isset($_SESSION['username'])){
-    include('users_area/user_login.php');
+    include('user_login.php');
 }else{
     include('payment.php');
 }
@@ -111,7 +111,7 @@ if(isset($_SESSION['username'])){
     <!-- include footer -->
 
 <?php
-include("./includes/footer.php")
+include("../includes/footer.php")
 
 ?>
 

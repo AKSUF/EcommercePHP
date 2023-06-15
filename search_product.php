@@ -66,7 +66,7 @@ include('./function/common_function.php');
 
           </a>
 
-          <a href="" class="anv-link">
+          <a href="./users_area/user_login.php" class="anv-link">
             login
           </a>
         </li>
