@@ -14,7 +14,6 @@ if(isset($_POST['user_register'])){
     $user_image_tmp = $_FILES['user_image']['tmp_name'];
     $user_ip = getIPAddress();
 
-
 $select_query="Select * from `user_table` where username='$user_username' or user_email='$user_email'";
 $result=mysqli_query($con,$select_query);
 $row_count=mysqli_num_rows($result);
@@ -36,7 +35,32 @@ else{
 
 }
  
+// Selecting cart items
+$select_cart_item = "SELECT * FROM cart WHERE user_ip = '$user_ip'";
+$result_count = mysqli_query($con, $select_cart_item);
+$rows_count = mysqli_num_rows($result_count);
+
+if ($rows_count > 0) {
+    if (!isset($_SESSION['username'])) {
+        // User is not logged in, redirect to login page
+        echo "<script>alert('You need to log in to proceed with payment')</script>";
+        echo "<script>window.open('user_login.php','_self')</script>";
+    } else {
+        // User is logged in, proceed to payment page
+        echo "<script>alert('You have items in your cart')</script>";
+        echo "<script>window.open('checkout.php','_self')</script>";
+    }
+} else {
+    if (!isset($_SESSION['username'])) {
+        // User is not logged in, redirect to login page
+        echo "<script>window.open('user_login.php','_self')</script>";
+    } else {
+        // User is logged in, redirect to index page
+        echo "<script>window.open('../index.php','_self')</script>";
+    }
 }
+
+
 ?>
 
 <!DOCTYPE html>

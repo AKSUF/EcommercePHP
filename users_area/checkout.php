@@ -38,18 +38,10 @@ include('../includes/connect.php');
             <li class="nav-item">
               <a class="nav-link" href="#">Contact</a>
             </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link" href="../cart.php"><i class="fa-sharp fa-solid fa-cart-shopping"><?php cart_item()?></i></a>
-            </li> -->
-            <li class="nav-item">
-              <a class="nav-link" href="#"><?php total_cart_price();?></a>
-            </li>
-
+          
+     
           </ul>
-          <form class="d-flex" role="search" action="" method="get">
-    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_data" value="<?php echo isset($_GET['search_data']) ? $_GET['search_data'] : ''; ?>">
-    <input type="submit" value="Search" class="btn btn-outline-light" name="search_data_product">
-</form>
+      
 
         </div>
       </div>
@@ -93,7 +85,7 @@ include('../includes/connect.php');
 if(isset($_SESSION['username'])){
     include('user_login.php');
 }else{
-    include('payment.php');
+    include('../payment.php');
 }
 ?>
 
