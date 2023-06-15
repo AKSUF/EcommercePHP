@@ -175,7 +175,8 @@ include('./function/common_function.php');
             if ($result_count > 0) {
               echo "<h4 class='px-3'>Subtotal: <strong class='text-info'>$total_price</strong></h4>
         <input type='submit' name='continue_shopping' value='Continue Shopping' value='Remove' class='bg-info px-3 py-2 border-0 mx-3'>
-        <a href='#' class='mx-3'><button class='bg-danger px-3 border-0'>Checkout</button></a>";
+
+     <button class='bg-danger px-3 border-0'>   <a href='checkout.php' class='mx-3 text-light text-decoration-none'>Checkout</a></button>";
             } else {
               "  <input type='submit' name='continue_shopping' value='Continue Shopping' value='Remove' class='bg-info px-3 py-2 border-0 mx-3'>";
             }
