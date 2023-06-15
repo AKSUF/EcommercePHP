@@ -141,10 +141,11 @@ while ($row = mysqli_fetch_array($result)) {
         }
         ?>
         <td><?php echo $product_price; ?></td>
-        <td><input type="checkbox"></td>
+        <td><input type="checkbox" name="removeitem[]" value="<?php echo $product_id?>"></td>
+
         <td>
             <input type="submit" name="update_cart" value="Update" class="bg-info px-3 py-2 border-0 mx-3">
-            <button class="bg-info px-3 py-2 border-0 mx-3">Remove</button>
+            <input type="submit" name="remove_cart" value="Remove" class="bg-info px-3 py-2 border-0 mx-3">
         </td>
     </tr>
 <?php
@@ -169,6 +170,24 @@ while ($row = mysqli_fetch_array($result)) {
 
         </div>
         </form>
+<!-- function to remove item -->
+<?php 
+function remove_cat_item(){
+  global $con;
+  if(isset($_POST['remove_cart'])){
+foreach($_POST['removeitem'] as $remove_id){
+  echo $remove_id;
+  $delete_query="Delete from `cart` where product_id=$remove_id";
+  $run_delete=mysqli_query($con,$delete_query);
+  if($run_delete){
+    echo "<script>window.open('cart.php','_self')</script>";
+  }
+}
+}}
+echo $remove_item=remove_cat_item();
+
+?>
+
     </div>
 </div>
 
