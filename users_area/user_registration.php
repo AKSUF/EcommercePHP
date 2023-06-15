@@ -8,9 +8,23 @@ if(isset($_POST['user_register'])){
     $user_password = $_POST['user_password'];
     $user_address = $_POST['user_address'];
     $user_mobile = $_POST['user_mobile'];
+    $conf_user_password=$_POST['conf_user_password'];
     $user_image = $_FILES['user_image']['name'];
     $user_image_tmp = $_FILES['user_image']['tmp_name'];
     $user_ip = getIPAddress();
+
+
+$select_query="Select * from `user_table` where username='$user_username' or user_email='$user_email'";
+$result=mysqli_query($con,$select_query);
+$row_count=mysqli_num_rows($result);
+if($row_count>0){
+    echo "<script>alert('Username already exists')</script>";
+
+}else if($user_password!=$conf_user_password){
+    echo "<script>alert('Give the confirm password')</script>";
+
+}
+else{
 
     move_uploaded_file($user_image_tmp, "./users_image/$user_image");
 
@@ -19,11 +33,8 @@ if(isset($_POST['user_register'])){
 
     $sql_execute = mysqli_query($con, $insert_query);
 
-    if($sql_execute){
-        echo "<script>alert('Data inserted successfully')</script>";
-    } else {
-        die(mysqli_error($con));
-    }
+}
+ 
 }
 ?>
 
