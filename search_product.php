@@ -33,7 +33,8 @@ include('./function/common_function.php');
               <a class="nav-link" href="#">Products</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Registration</a>
+            <a class="nav-link" href="./users_area/user_registration.php">Registration</a>
+
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Contact</a>
