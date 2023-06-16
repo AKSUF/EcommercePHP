@@ -41,9 +41,10 @@ if($quantity==0){
 }
 $insert_orders="insert into `user_orders` (user_id,amount_due,invoice_number,total_products,ordes_date,order_status) values($user_id,$subtotal,$invoice_number,$count_products,Now(),'$status')";
 $result_query=mysqli_query($con,$insert_orders);
-echo "<script>alert('orders are submitted successfully')</script>";
-echo "<script>window.open('profile.php','_self')</script>";
-
+if($result_query){
+    echo "<script>alert('orders are submitted successfully')</script>";
+echo "<script>window.open('../profile.php','_self')</script>";
+}
 
 ?>
 
