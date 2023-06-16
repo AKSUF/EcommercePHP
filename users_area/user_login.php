@@ -52,6 +52,7 @@ include('../function/abcommon.php');
 </html>
 
 <?php
+session_start(); // Start the session
 if(isset($_POST['user_login'])){
     $user_username = $_POST['user_username'];
     $user_password = $_POST['user_password'];

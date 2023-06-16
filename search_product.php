@@ -1,8 +1,8 @@
 <?php
 include('./includes/connect.php');
 include('./function/common_function.php');
+session_start();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -62,14 +62,31 @@ include('./function/common_function.php');
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
 
-          <a href="" class="anv-link">
-            Welcome guest
+        <?php
 
-          </a>
+if(!isset($_SESSION['username'])){
+  echo "  <a href=''class='anv-link'>
+  Welcome guest
+</a>";
+  }else{
+    echo "  <a href=''class='anv-link'>
+    Welcome ".$_SESSION['username']."
+  </a>";
+  }
+if(!isset($_SESSION['username'])){
+echo "<a href='./users_area/user_login.php' class='anv-link'>
+login
+</a>";
+}else{
+  echo "<a href='./users_area/user_loout.php' class='anv-link'>
+ logout
+</a>";
+}
 
-          <a href="./users_area/user_login.php" class="anv-link">
-            login
-          </a>
+
+
+?>
+
         </li>
 
       </ul>
