@@ -36,7 +36,7 @@ else{
 }
  
 // Selecting cart items
-$select_cart_item = "SELECT * FROM cart WHERE user_ip = '$user_ip'";
+$select_cart_item = "SELECT * FROM cart WHERE ip_adress = '$user_ip'";
 $result_count = mysqli_query($con, $select_cart_item);
 $rows_count = mysqli_num_rows($result_count);
 
@@ -59,7 +59,7 @@ if ($rows_count > 0) {
         echo "<script>window.open('../index.php','_self')</script>";
     }
 }
-
+}
 
 ?>
 
