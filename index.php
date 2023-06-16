@@ -1,7 +1,7 @@
 <?php
 include('./includes/connect.php');
 include('./function/common_function.php');
-session_start();
+@session_start();
 ?>
 
 <!DOCTYPE html>
@@ -64,7 +64,7 @@ session_start();
       
 
 <?php
-
+@session_start();
 if(!isset($_SESSION['username'])){
   echo "  <a href=''class='anv-link'>
   Welcome guest

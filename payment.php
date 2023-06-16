@@ -17,6 +17,16 @@ session_start();
 </head>
 
 <body>
+<?php
+$user_ip=getIPAddress();
+$get_user="Select * from `user_table` where user_ip='$user_ip'";
+$result=mysqli_query($con,$get_user);
+$run_query=mysqli_fetch_array($result);
+$user_id=$run_query['user_id'];
+?>
+
+
+
   <div class="container-fluid p-0">
     <!-- first child -->
     <nav class="navbar navbar-expand-lg bg-info">
@@ -83,13 +93,7 @@ login
  logout
 </a>";
 }
-
-
-
 ?>
-
-
-       
         </li>
 
       </ul>
@@ -108,25 +112,25 @@ cart();
         Congratulation in this online community and store
       </p>
     </div>
-    <!-- 4th child -->
+   
+<div class="container">
+<h2 class="text-center text-info">
+  Payment option
+</h2>
+<div class="row ">
+ <div class="col-md-6 justify-content-center">
+ <a href="order.php"><img src="./images/springboot.png" target="_blank" alt=""></a>
 
-    <div class="row">
-      <div class="col-md-10">
-        <!-- product section -->
-<div class="row">
-  <!-- category -->
-<h1>Payment</h1>
-      </div>
-      </div>
+ </div>
+ <div class="col-md-6 justify-content-center text-center">
+ <a href="./users_area/order.php?user_id=<?php echo $user_id?>" class=""><h2>Pay offline</h2></a>
 
-<!-- 
-category section -->
-      
-    </div>
+ </div>
+</div>
+</div>
 
-    <!-- last child -->
 
-    <!-- include footer -->
+
 
 <?php
 include("./includes/footer.php")
