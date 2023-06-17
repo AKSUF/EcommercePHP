@@ -68,6 +68,9 @@
     if(isset($_GET['view_product'])){
         include('view_products.php');
     }
+    if(isset($_GET['edit_product'])){
+        include('edit_product.php');
+    }
     ?>
 </div>
 
