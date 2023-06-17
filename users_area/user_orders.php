@@ -1,11 +1,10 @@
 
 <?php
 include('./includes/connect.php');
-
-// Rest of your code
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+@session_start();
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,13 +19,11 @@ include('./includes/connect.php');
 <body>
 <?php 
 $username=$_SESSION['username'];
-$get_user="select * from `user_table` where username='$username'";
+$get_user="SELECT * FROM user_table WHERE username='$username'";
 $result=mysqli_query($con,$get_user);
 $row_fetch=mysqli_fetch_assoc($result);
 $user_id=$row_fetch['user_id'];
 ?>
-
-
     <h2>Hello ordes</h2>
     <table class="table table-bordered mt-5">
     <thead class="bg-info">  
@@ -41,7 +38,6 @@ $user_id=$row_fetch['user_id'];
 </tr>
 </thead>  
 <tbody class="bg-secondary">
-
 <?php
 $get_order_details="select * from `user_orders` where user_id=$user_id";
 $resul_orders=mysqli_query($con,$get_order_details);
@@ -65,8 +61,6 @@ while ($row_order = mysqli_fetch_assoc($resul_orders)) {
 }
 
 ?>
-
-  
 </tbody>
 
     </table>
