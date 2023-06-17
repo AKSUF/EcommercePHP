@@ -64,7 +64,7 @@ $rows_count=mysqli_num_rows($result_count);
 echo $rows_count;
     ?></td>
     <td><?php echo $product_status; ?></td>
-    <td><a href="index.php?edit_product"><i class="fa-solid fa-pen-to-square"></i></a></td>
+    <td><a href="index.php?edit_product=<?php echo $product_id?>"><i class="fa-solid fa-pen-to-square"></i></a></td>
     <td><i class="fa-solid fa-trash"></i></td>
 </tr>
 

@@ -1,3 +1,37 @@
+
+<?php
+include('../includes/connect.php');
+?>
+<?php
+if(isset($_GET['edit_product'])){
+$edit_id=$_GET['edit_product'];
+$get_data="select * from `products` where product_id=$edit_id";
+$result=mysqli_query($con,$get_data);
+$row=mysqli_fetch_assoc($result);
+$product_title=$row['product_title'];
+
+$product_description=$row['product_description'];
+$product_keyword=$row['product_keyword'];
+
+$category_id=$row['category_id'];
+$brand_id=$row['brand_id'];
+$product_image1=$row['product_image1'];
+$product_image2=$row['product_image2'];
+$product_image3=$row['product_image3'];
+$product_price =$row['product_price'];
+//fetching category name
+$select_category="select * from `categories` where category_id =$category_id";
+$result_cat=mysqli_query($con,$select_category);
+$row_cat=mysqli_fetch_assoc($result_cat);
+$category_title=$row_cat['category_title'];
+// fetching brands name
+$select_brands="select * from `branch` where brand_id =$brand_id";
+$result_brand=mysqli_query($con,$select_brands);
+$row_brand=mysqli_fetch_assoc($result_brand);
+$brand_title=$row_brand['brand_title'];
+// echo $brand_title;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,36 +48,40 @@
 <body>
 <div class="container mt-5">
     <h1 class="text-center">Edit Products</h1>
+
     <form action="" method="post" enctype="multipart/form-data">
         <div class="form-outline w-50 m-auto">
             <label for="product_title" class="form-label">
                 Product Title
             </label>
-            <input type="text" id="product_title" name="product_title" class="form-control" required="required">
+            <input type="text" value="<?php echo $product_title?>" id="product_title" name="product_title" class="form-control" required="required">
         </div>
         <div class="form-outline w-50 m-auto">
             <label for="product_description" class="form-label">
                 Product Description
             </label>
-            <input type="text" id="product_description" name="product_description" class="form-control" required="required">
+            <input type="text" value="<?php echo $product_description?>" id="product_description" name="product_description" class="form-control" required="required">
         </div>
         <div class="form-outline w-50 m-auto">
             <label for="product_keyword" class="form-label">
                 Product Description
             </label>
-            <input type="text" id="product_keyword" name="product_description" class="form-control" required="required">
+            <input type="text" id="product_keyword" value="<?php echo $product_keyword?>" name="product_description" class="form-control" required="required">
         </div>
         <div class="form-outline w-50 m-auto mb-4">
         <label for="product_categories" class="form-label">
                 Product Categories
             </label>
          <select name="product_category" class="form-control">
-<option value="">1</option>
-<option value="">2</option>
-<option value="">3</option>
-<option value="">4</option>
-<option value="">5</option>
-
+<option value="<?php echo $category_title?>"><?php echo $category_title?></option>
+<?php
+$select_category_all="select * from `categories`";
+$result_cat=mysqli_query($con,$select_category_all);
+while($row_cat_all=mysqli_fetch_assoc($result_cat)){
+    $category_title=$row_cat_all['category_title'];
+    echo "<option value=<option value='$category_id'>$category_title</option>";
+}
+?>
          </select>
         </div>
         <div class="form-outline w-50 m-auto mb-4">
@@ -51,13 +89,18 @@
                 Product Brand
             </label>
          <select name="product_brands" class="form-control">
-<option value="">1</option>
-<option value="">2</option>
-<option value="">3</option>
-<option value="">4</option>
-<option value="">5</option>
+<option value="<?php echo $brand_title?>"><?php echo $brand_title?></option>
+<?php
+$select_category_all="select * from `branch`";
+$result_cat=mysqli_query($con,$select_category_all);
+while($row_cat_all=mysqli_fetch_assoc($result_cat)){
+    $category_title=$row_cat_all['brand_title'];
+    echo "<option value=<option value='$brand_id'>$brand_title</option>";
+}
 
-         </select>
+
+?>
+      </select>
         </div>
         <div class="form-outline w-50 m-auto">
             <label for="product_keyword" class="form-label">
@@ -65,7 +108,7 @@
             </label>
             <div class="d-flex">
             <input type="file" id="product_keyword" name="product_image1" class="form-control" required="required">
-            <img src="../admin_area/product_image/pexels-felix-mittermeier-957039.jpg" alt="" class="productimage">
+            <img src="../admin_area/product_image/<?php echo $product_image1?>" alt="" class="productimage">
             </div>
         </div>
         <div class="form-outline w-50 m-auto">
@@ -74,7 +117,7 @@
             </label>
             <div class="d-flex">
             <input type="file" id="product_keyword" name="product_image1" class="form-control" required="required">
-            <img src="../admin_area/product_image/pexels-felix-mittermeier-957039.jpg" alt="" class="productimage">
+            <img src="../admin_area/product_image/<?php echo $product_image2?>" alt="" class="productimage">
 
             </div>
         </div>
@@ -84,11 +127,16 @@
             </label>
             <div class="d-flex">
             <input type="file" id="product_keyword" name="product_image1" class="form-control" required="required">
-            <img src="../admin_area/product_image/pexels-felix-mittermeier-957039.jpg" alt="" class="productimage">
+            <img src="../admin_area/product_image/<?php echo $product_image3?> alt="" class="productimage">
 
             </div>
         </div>
-
+        <div class="form-outline w-50 m-auto">
+            <label for="product_price" class="form-label">
+                Product Price
+            </label>
+            <input type="text" value="<?php echo $product_price?>" id="product_price " name="product_price" class="form-control" required="required">
+        </div>
        <div class="text-center mt-3">
         <input type="submit" name="edit_product" value="Edit Product">
        </div>
