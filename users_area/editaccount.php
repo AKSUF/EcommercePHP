@@ -3,7 +3,7 @@
 include('./includes/connect.php');
 if(isset($_GET['edit_account'])){
     $user_session_name=$_SESSION['username'];
-    $select_query="select * from `user_table` where username='$user_session_name'";
+    $select_query="select * from user_table where username='$user_session_name'";
     $result_query=mysqli_query($con,$select_query);
     $row_fetch=mysqli_fetch_assoc($result_query);
     $user_id=$row_fetch['user_id'];
@@ -12,18 +12,23 @@ if(isset($_GET['edit_account'])){
     $user_address=$row_fetch['user_address'];
     $user_mobile=$row_fetch['user_mobile'];
     $user_image=$row_fetch['user_image'];
-    if(isset($_POST['user_update'])){
+}
+
+    if(isset($_POST['update_account'])){
         $user_name=$_POST['username'];
         $user_email=$_POST['user_email'];
         $user_address=$_POST['user_address'];
         $user_mobile=$_POST['user_mobile'];
         $user_image=$_FILES['user_image']['name'];
         $user_image_temp=$_FILES['user_image']['tmp'];
-        move_uploaded_file($user_image_temp,'./users_image/$user_image');
-        $update_data="update 'user_table' set username='$username',user_email";
+        move_uploaded_file($user_image_temp, "./users_image/$user_image");
+        $update_data="UPDATE user_table SET username='$username', user_email='$user_email', user_image='$user_image', user_address='$user_address', user_mobile='$user_mobile' WHERE user_id=$user_id";
+        $result_query=mysqli_query($con,$update_data);
     }
-}
+        if($result_query){
+            echo "<script>alert('Data updated successfully')</script>";
 
+        }
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +56,7 @@ if(isset($_GET['edit_account'])){
 <div class="form-outline mb-4">
     <input type="text" class="form- w-50 m-auto" name="user_mobile" value="<?php echo $user_mobile?>">
 </div>
-<input type="submit" class="bg-info py-2 px-3 border-0" value="update" name="update_account ">
+<input type="submit" class="bg-info py-2 px-3 border-0" value="update" name="update_account">
  </form>
 </body>
 </html>
