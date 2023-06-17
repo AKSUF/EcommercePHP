@@ -139,11 +139,13 @@ $result_image=mysqli_query($con,$user_image);
 $row_image=mysqli_fetch_array($result_image);
 $user_image=$row_image['user_image'];
 if($user_image){
+
     echo "
     <li class='nav-item'>
     <img src='./users_area/users_image/$user_image' class='profile_img my-4' alt=''>
     </li>
     ";
+
 }else{
     echo "There are o image";
 }
@@ -156,7 +158,7 @@ if($user_image){
     <a class="nav-link" href="./profile.php?edit_account=1">Edit Account</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="./profile.php?My_orders">My orders</a>
+  <a class="nav-link" href="./profile.php?my_orders">My orders</a>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="./profile.php?delete_account">Delete Account</a>
@@ -166,12 +168,6 @@ if($user_image){
 </li>
 
 </ul>
-
-<div class="">
-
-</div>
-
-
   </div>
 
 
@@ -184,6 +180,9 @@ if($user_image){
    get_user_data();
    if(isset($_GET['edit_account'])){
     include('./users_area/editaccount.php');
+   }
+   if(isset($_GET['my_orders'])){
+    include('./users_area/user_orders.php');
    }
     ?>
    

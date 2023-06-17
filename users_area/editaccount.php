@@ -12,6 +12,7 @@ if(isset($_GET['edit_account'])){
     $user_address=$row_fetch['user_address'];
     $user_mobile=$row_fetch['user_mobile'];
     $user_image=$row_fetch['user_image'];
+
 }
 
     if(isset($_POST['update_account'])){
@@ -30,7 +31,6 @@ if(isset($_GET['edit_account'])){
 
         }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
