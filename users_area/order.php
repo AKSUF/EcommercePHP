@@ -52,9 +52,9 @@ $insert_pending_orders="insert into `orders_pending` (user_id,invoice_number,pro
 
 $result_pending_orders=mysqli_query($con,$insert_pending_orders);
 
-//delete items from cart
-$empty_cart="Delete from `cart` where ip_adress='$get_ip_address'";
-$result_query=mysqli_query($con,$empty_cart);
+// //delete items from cart
+// $empty_cart="Delete from `cart` where ip_adress='$get_ip_address'";
+// $result_query=mysqli_query($con,$empty_cart);
 
 
 ?>

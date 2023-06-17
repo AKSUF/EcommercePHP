@@ -1,7 +1,7 @@
 <?php
 include('./includes/connect.php');
 include('./function/common_function.php');
-@session_start();
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -153,7 +153,7 @@ if($user_image){
   <a class="nav-link" href="./profile.php">Pending Orders</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="./profile.php?edit_account">Edit Account</a>
+    <a class="nav-link" href="./profile.php?edit_account=1">Edit Account</a>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="./profile.php?My_orders">My orders</a>
@@ -167,7 +167,9 @@ if($user_image){
 
 </ul>
 
+<div class="">
 
+</div>
 
 
   </div>
@@ -176,9 +178,15 @@ if($user_image){
 </div>
 
 
-      <div class="col-md-8">
+      <div class="col-md-8 text-center text-danger">
         <!-- product section -->
-
+        <?php
+   get_user_data();
+   if(isset($_GET['edit_account'])){
+    include('./users_area/editaccount.php');
+   }
+    ?>
+   
       </div>
 
     <!-- include footer -->

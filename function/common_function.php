@@ -394,6 +394,7 @@ function cart(){
 
 function total_cart_price() {
   global $con;
+  if($con)
   $get_ip_add = getIPAddress();
   $total_price = 0;
   $cart_query = "SELECT * FROM `cart` WHERE ip_adress='$get_ip_add'";
@@ -412,7 +413,55 @@ function total_cart_price() {
   echo $total_price;
 }
 
+//get user details
+function get_user_data() {
+  global $con;
+  $username = $_SESSION['username'];
+  $get_details = "select * from `user_table` where username='$username'";
+  $result_query = mysqli_query($con, $get_details);
+  while ($row_query = mysqli_fetch_array($result_query)) {
+    $user_id = $row_query['user_id'];
+    if (isset($_GET['edit_account'])) {
+      if (isset($_GET['my_orders'])) {
+        if (isset($_GET['delete_account'])) {
+          $get_orders = "select * from `user_orders` where user_id=$user_id and order_status='pending'";
+          $result_orders_query = mysqli_query($con, $get_orders);
+          $row_count = mysqli_num_rows($result_orders_query);
+          if ($row_count > 0) {
+            echo "<h3 class='text-center'>You have <span class='text-danger'>$row_count</span> pending orders</h3>
+            <p><a href='profile.php?my_orders'>Order Details</a></p>
+            
+            ";
+            
+          }else{
+            echo "<h3 class='text-center'>You have <span class='text-danger'>$row_count</span> pending orders</h3>
+            <p><a href='profile.php?my_orders'>Order Details</a></p>
 
+            ";
+
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+// function get_user_data() {
+//   global $con;
+//   $username = $_SESSION['username'];
+//   $get_details = "SELECT * FROM `user_table` WHERE username='$username'";
+//   $result_query = mysqli_query($con, $get_details);
+//   $row_query = mysqli_fetch_assoc($result_query);
+//   $user_id = $row_query['user_id'];
+
+//   $get_orders = "SELECT COUNT(*) AS count FROM `user_orders` WHERE user_id=$user_id AND order_status='pending'";
+//   $result_orders_query = mysqli_query($con, $get_orders);
+//   $row_count = mysqli_fetch_assoc($result_orders_query)['count'];
+
+//   echo "<h3 class='text-center'>You have <span class='text-danger'>$row_count</span> pending orders</h3>";
+// }
 
 
 ?>
