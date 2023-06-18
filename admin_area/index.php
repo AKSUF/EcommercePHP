@@ -50,7 +50,7 @@
                     <button><a href="index.php?view_categories" class="nav-link text-light bg-info my-1">View Categories</a></button>
                     <button><a href="index.php?view_brands" class="nav-link text-light bg-info my-1">View Brands</a></button>
                     <button><a href="index.php?list_orders" class="nav-link text-light bg-info my-1">All Orders</a></button>
-                    <button><a href="" class="nav-link text-light bg-info my-1">All payments</a></button>
+                    <button><a href="index.php?list_payment" class="nav-link text-light bg-info my-1">All payments</a></button>
                     <button><a href="" class="nav-link text-light bg-info my-1">List users</a></button>
                     <button><a href="" class="nav-link text-light bg-info my-1">Logout</a></button>
                 </div>
@@ -91,6 +91,9 @@
     }
     if(isset($_GET['list_orders'])){
         include('list_orders.php');
+    }
+    if(isset($_GET['list_payment'])){
+        include('list_payment.php');
     }
     ?>
 </div>
