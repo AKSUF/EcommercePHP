@@ -28,7 +28,7 @@ while($row=mysqli_fetch_assoc($result)){
             <td><?php echo $number;?></td>
             <td><?php echo $category_title;?></td>
             <td><a href="" class="text-info"><i class="fa-solid fa-pen-to-square"></i></a></td>
-            <td><a href="" class="text-danger"><i class="fa-solid fa-trash"></i></a></td>
+            <td><a href="index.php?delete_brands=<?php echo $delete_brands?>" class="text-danger"><i class="fa-solid fa-trash"></i></a></td>
         </tr>
 <?php
 

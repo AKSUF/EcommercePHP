@@ -83,7 +83,12 @@
     if(isset($_GET['edit_category'])){
         include('edit_category.php');
     }
-
+    if(isset($_GET['delete_category'])){
+        include('delete_category.php');
+    }
+    if(isset($_GET['delete_brands'])){
+        include('delete_category.php');
+    }
 
     ?>
 </div>
