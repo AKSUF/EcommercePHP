@@ -65,7 +65,7 @@ echo $rows_count;
     ?></td>
     <td><?php echo $product_status; ?></td>
     <td><a href="index.php?edit_product=<?php echo $product_id?>"><i class="fa-solid fa-pen-to-square"></i></a></td>
-    <td><i class="fa-solid fa-trash"></i></td>
+    <td><a href="index.php?delete_product=<?php echo $product_id?>"><i class="fa-solid fa-trash"></i></td>
 </tr>
 
 <?php
